@@ -10,8 +10,37 @@ workflows:
         BUNDLE_ID: "com.corearsitek.webview"
         APP_NAME: "CoreArsitek"
     scripts:
-      - name: Ensure Flutter project structure
-        script: flutter create .
+      - name: Re-generate Flutter iOS project
+        script: |
+          rm -rf ios
+          flutter create .
+      - name: Overwrite Info.plist for WebView permissions
+        script: |
+          cat > ios/Runner/Info.plist <<EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>CFBundleName</key>
+            <string>$(APP_NAME)</string>
+            <key>CFBundleIdentifier</key>
+            <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+            <key>CFBundleVersion</key>
+            <string>1.0.0</string>
+            <key>CFBundleShortVersionString</key>
+            <string>1.0.0</string>
+            <key>UILaunchStoryboardName</key>
+            <string>LaunchScreen</string>
+            <key>UIRequiresFullScreen</key>
+            <true/>
+            <key>NSAppTransportSecurity</key>
+            <dict>
+              <key>NSAllowsArbitraryLoads</key>
+              <true/>
+            </dict>
+          </dict>
+          </plist>
+          EOF
       - name: Get Flutter packages
         script: flutter pub get
       - name: Build iOS release (no codesign)
