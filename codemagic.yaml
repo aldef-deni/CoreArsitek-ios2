@@ -47,14 +47,4 @@ workflows:
         script: flutter build ios --release --no-codesign
       - name: Package .app into .ipa
         script: |
-          cd build/ios/iphoneos
-          mkdir Payload
-          mv Runner.app Payload/
-          zip -r Runner.ipa Payload
-    artifacts:
-      - build/ios/iphoneos/Runner.ipa
-      - build/ios/iphoneos/Runner.app
-    publishing:
-      email:
-        recipients:
-          - deniafrizal2904@gmail.com
+          cd build/ios
