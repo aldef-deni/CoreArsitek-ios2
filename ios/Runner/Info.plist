@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDisplayName</key>
+    <string>CoreArsitek</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.corearsitek.webview</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+    <key>NSCameraUsageDescription</key>
+    <string>This app may request camera access for uploading media.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app may request microphone access for recording audio.</string>
+</dict>
+</plist>

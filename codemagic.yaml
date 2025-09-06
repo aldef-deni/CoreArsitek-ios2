@@ -1,0 +1,25 @@
+workflows:
+  ios-webview-release:
+    name: iOS WebView Release
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+      vars:
+        BUNDLE_ID: "com.corearsitek.webview"
+        APP_NAME: "CoreArsitek"
+    scripts:
+      - name: Ensure Flutter project structure
+        script: flutter create .
+      - name: Get Flutter packages
+        script: flutter pub get
+      - name: Build iOS release (no codesign)
+        script: flutter build ios --release --no-codesign
+    artifacts:
+      - build/ios/iphoneos/*.ipa
+      - build/ios/iphoneos/*.app
+    publishing:
+      email:
+        recipients:
+          - deniafrizal2904@gmail.com
